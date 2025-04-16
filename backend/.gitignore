@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+.eggs/
+
+# Virtual environment
+venv/
+.venv/
+
+# Django stuff:
+db.sqlite3
+*.log
+
+# Media and static files (generated or user-uploaded)
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+.env.*
+
+# MacOS
+.DS_Store
+
+# Pytest
+.cache/
+
+# Migrations (optional - if you regenerate often or for personal projects)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# MyPy and other tools
+.mypy_cache/
+coverage/
+htmlcov/
+
+
+/db
