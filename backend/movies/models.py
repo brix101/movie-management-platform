@@ -6,6 +6,8 @@ class Movie(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     vido_file = models.FileField(upload_to='videos/')
 
-
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-id']
