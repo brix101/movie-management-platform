@@ -10,7 +10,10 @@
   <div class="movie-details">
     <div class="movie-header">
       <h2>{{ movie.title }}</h2>
-      <button class="edit-button">Edit</button>
+      <div class="button-group">
+        <button class="edit-button">Edit</button>
+        <button class="delete-button" (click)="onDelete()">Delete</button>
+      </div>
     </div>
     <div class="movie-description">
       <p>{{ movie.description }}</p>

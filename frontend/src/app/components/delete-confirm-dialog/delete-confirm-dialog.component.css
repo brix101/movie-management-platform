@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  background-color: #141414;
+  color: #fff;
+  padding: 1.5rem;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+h2[mat-dialog-title] {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.mdc-dialog__content {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+button[mat-button] {
+  color: #b3b3b3;
+}
+
+button[mat-raised-button] {
+  background-color: #e50914;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #f40612;
+}
