@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Movie } from '../movies/movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MovieDetailService } from './movie-detail.service';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-movie-detail',
-  imports: [NgIf],
+  imports: [NgIf, RouterModule],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css',
 })

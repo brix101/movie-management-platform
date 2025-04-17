@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MovieFormService } from './movie-form.service';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-form',
@@ -21,7 +21,7 @@ export class MovieFormComponent {
   constructor(
     private fb: FormBuilder,
     private movieFormService: MovieFormService,
-    private router: Router,
+    private snackBar: MatSnackBar,
   ) {
     this.form = this.fb.group({
       video_file: [null, Validators.required],
@@ -51,10 +51,15 @@ export class MovieFormComponent {
           console.log('Movie uploaded!', res);
           this.form.reset(); // Optionally reset form
 
-          this.router.navigate(['/movies']);
+          this.snackBar.open('Movie uploaded successfully!', 'Close', {
+            duration: 3000, // Duration in milliseconds
+          });
         },
         error: (err) => {
           console.error('Upload failed', err);
+          this.snackBar.open('Upload failed. Please try again.', 'Close', {
+            duration: 3000,
+          });
         },
       });
     }
