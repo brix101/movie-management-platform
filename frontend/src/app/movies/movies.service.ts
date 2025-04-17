@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Movie } from './movie';
 
@@ -8,7 +9,7 @@ import { Movie } from './movie';
 })
 export class MoviesService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000/api/movies/';
+  private apiUrl = `${environment.apiUrl}/movies/`;
 
   constructor() {}
 
