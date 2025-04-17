@@ -1,0 +1,11 @@
+<div *ngIf="movie">
+  <h2>{{ movie.title }}</h2>
+  <p>{{ movie.description }}</p>
+
+  <video *ngIf="movie.video_file" width="640" height="360" controls>
+    <source [src]="movie.video_file" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <p *ngIf="!movie.video_file">No video available.</p>
+</div>
