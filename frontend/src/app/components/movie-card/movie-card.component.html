@@ -1,1 +1,10 @@
-<p>movie-card works!</p>
+<a [routerLink]="['/movies', movie.id]" class="movie-link">
+  <div class="movie-thumbnail">
+    <img [src]="movie.thumbnail" alt="{{ movie.title }} Thumbnail" />
+  </div>
+  <div class="movie-info">
+    <h3>{{ movie.title }}</h3>
+    <p>{{ movie.description }}</p>
+    <p class="movie-date">Added: {{ movie.date_added | date: "mediumDate" }}</p>
+  </div>
+</a>

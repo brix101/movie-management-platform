@@ -1,12 +1,13 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { MovieCardComponent } from '../components/movie-card/movie-card.component';
 import { Movie } from './movie';
 import { MoviesService } from './movies.service';
-import { CommonModule, NgFor } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
-  imports: [RouterModule, NgFor, CommonModule],
+  imports: [RouterModule, NgFor, MovieCardComponent],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.css',
 })
