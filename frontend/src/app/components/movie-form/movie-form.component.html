@@ -1,0 +1,28 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="movie-form"
+  enctype="multipart/form-data"
+>
+  <label>
+    Title:
+    <input type="text" formControlName="title" required />
+  </label>
+
+  <label>
+    Description:
+    <textarea formControlName="description" required></textarea>
+  </label>
+
+  <label>
+    Video File:
+    <input
+      type="file"
+      (change)="onFileChange($event)"
+      accept="video/*"
+      required
+    />
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Upload Movie</button>
+</form>
