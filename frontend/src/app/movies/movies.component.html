@@ -1,12 +1,19 @@
-<div>
-  <p>movies works!</p>
-
-  <ul>
-    <li *ngFor="let movie of movies">
-      <a [routerLink]="['/movies', movie.id]">
-        <h3>{{ movie.title }}</h3>
-        <p>{{ movie.description }}</p>
+<div class="movies-container">
+  <h2>Movies</h2>
+  <div class="movies-grid">
+    <div *ngFor="let movie of movies" class="movie-card">
+      <a [routerLink]="['/movies', movie.id]" class="movie-link">
+        <div class="movie-thumbnail">
+          <img [src]="movie.thumbnail" alt="{{ movie.title }} Thumbnail" />
+        </div>
+        <div class="movie-info">
+          <h3>{{ movie.title }}</h3>
+          <p>{{ movie.description }}</p>
+          <p class="movie-date">
+            Added: {{ movie.date_added | date: "mediumDate" }}
+          </p>
+        </div>
       </a>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
