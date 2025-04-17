@@ -29,13 +29,8 @@ class MovieSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        print(validated_data.get('video_file').get('path'))
-
         movie = super().create(validated_data)
-
-        _logger.info(movie)
         thumbnail =  generate_thumbnail.delay(movie.id)
 
-        _logger.info(thumbnail)
         movie.thumbnail = thumbnail
         return movie
