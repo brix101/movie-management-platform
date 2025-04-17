@@ -13,7 +13,7 @@ project-root/
 ├── backend/               # Django project with Celery and Redis
 │   ├── manage.py
 │   ├── requirements.txt
-    ├── docker-compose.yml     # Manages services (Django, Redis, Celery, Angular)
+    ├── docker-compose.yml     # Manages services (Redis)
 │   ├── backend/
 │   └── movies/
 │
@@ -54,9 +54,7 @@ cd backend
 celery -A backend worker --loglevel=info
 ```
 
-> Replace `backend` with your Django project name if it's different.
-
-## 🧪 Running Locally without Docker
+## 🧪 Setting up and Running apps
 
 ### Backend
 
@@ -78,8 +76,8 @@ docker run -d -p 4200:4200 angular-app
 
 # or
 
-npm install
-ng serve
+pnpm install
+pnpm ng serve
 ```
 
 ## This will start the following services:
