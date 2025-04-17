@@ -13,15 +13,14 @@ project-root/
 ├── backend/               # Django project with Celery and Redis
 │   ├── manage.py
 │   ├── requirements.txt
-│   ├── your_project/
-│   └── your_apps/
+    ├── docker-compose.yml     # Manages services (Django, Redis, Celery, Angular)
+│   ├── backend/
+│   └── movies/
 │
 ├── frontend/              # Angular app with Docker
 │   ├── Dockerfile
 │   ├── angular.json
 │   └── src/
-│
-├── docker-compose.yml     # Manages services (Django, Redis, Celery, Angular)
 ```
 
 ## ⚙️ Requirements
@@ -37,22 +36,16 @@ project-root/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/brix101/movie-management-platform
+cd movie-management-platform
 ```
 
 ### 2. Start All Services with Docker Compose
 
 ```bash
-docker-compose up --build
+cd backend
+docker-compose up -d --build
 ```
-
-This will start the following services:
-
-- Django backend at `http://localhost:8000`
-- Angular frontend at `http://localhost:4200`
-- Redis for Celery message brokering
-- Celery worker running alongside Django
 
 ### 3. Run Celery Worker (if running outside Docker)
 
@@ -80,20 +73,17 @@ python manage.py runserver
 
 ```bash
 cd frontend
+docker build -t angular-app .
+docker run -d -p 4200:4200 angular-app
+
+# or
+
 npm install
 ng serve
 ```
 
-## 📦 Required Python Packages (`backend/requirements.txt`)
+## This will start the following services:
 
-Make sure these are included:
-
-```
-Django>=4.0
-celery
-redis
-django-cors-headers
-```
-
-Let me know if you'd like me to generate a sample `docker-compose.yml` as well!
+- Django backend at `http://localhost:8000`
+- Angular frontend at `http://localhost:4200`
 
