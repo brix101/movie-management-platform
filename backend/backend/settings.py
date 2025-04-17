@@ -84,6 +84,8 @@ DATABASES = {
     }
 }
 
+CELERY_BROKER_URL = 'redis://:eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81@localhost:6379/0'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
