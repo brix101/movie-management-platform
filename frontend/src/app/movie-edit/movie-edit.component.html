@@ -19,8 +19,18 @@
     <input type="file" (change)="onFileChange($event)" accept="video/*" />
   </label>
 
-  <button type="submit" [disabled]="form.invalid || isLoading()">
-    <span *ngIf="isLoading()">Updating...</span>
-    <span *ngIf="!isLoading()">Update Movie</span>
-  </button>
+  <div class="form-buttons">
+    <button
+      type="submit"
+      [disabled]="form.invalid || !form.dirty || isLoading()"
+    >
+      <span *ngIf="isLoading()">Updating...</span>
+      <span *ngIf="!isLoading()">Update Movie</span>
+    </button>
+
+    <button type="button" class="cancel-button" (click)="onCancel()">
+      <span *ngIf="form.dirty">Cancel</span>
+      <span *ngIf="!form.dirty">Back</span>
+    </button>
+  </div>
 </form>

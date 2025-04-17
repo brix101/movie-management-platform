@@ -55,6 +55,7 @@
 
 .movie-form button:disabled {
   background-color: #555;
+  cursor: not-allowed;
 }
 
 .movie-form button:hover:not(:disabled) {

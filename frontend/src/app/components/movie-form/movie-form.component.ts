@@ -50,8 +50,7 @@ export class MovieFormComponent {
 
       // ✅ Use the service here directly
       this.movieFormService.uploadMovie(formData).subscribe({
-        next: (res) => {
-          console.log('Movie uploaded!', res);
+        next: () => {
           this.form.reset(); // Optionally reset form
 
           this.snackBar.open('Movie uploaded successfully!', 'Close', {

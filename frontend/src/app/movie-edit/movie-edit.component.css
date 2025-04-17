@@ -39,8 +39,14 @@
   cursor: pointer;
 }
 
+.movie-form .form-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .movie-form button {
-  width: 100%;
+  flex: 1;
   padding: 12px;
   background-color: #e50914;
   color: white;
@@ -49,16 +55,24 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
   transition: background-color 0.3s;
 }
 
 .movie-form button:disabled {
   background-color: #555;
+  cursor: not-allowed;
 }
 
 .movie-form button:hover:not(:disabled) {
   background-color: #b81c29;
+}
+
+.movie-form .cancel-button {
+  background-color: #333;
+}
+
+.movie-form .cancel-button:hover {
+  background-color: #555;
 }
 
 .movie-form input:focus,

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Movie } from '../movies/movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetailService } from '../movie-detail/movie-detail.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
@@ -24,6 +24,7 @@ export class MovieEditComponent {
     private fb: FormBuilder,
     private movieEditService: MovieEditService,
     private snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.form = this.fb.group({
       video_file: [null], // optional now
@@ -60,6 +61,7 @@ export class MovieEditComponent {
     const file = input.files?.[0];
     if (file) {
       this.form.patchValue({ video_file: file });
+      this.form.get('video_file')?.markAsDirty();
     }
   }
 
@@ -108,6 +110,12 @@ export class MovieEditComponent {
           this.isLoading.set(false);
         },
       });
+    }
+  }
+
+  onCancel() {
+    if (this.movie) {
+      this.router.navigate(['/movies', this.movie.id]);
     }
   }
 }
