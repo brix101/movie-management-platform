@@ -24,5 +24,8 @@
     />
   </label>
 
-  <button type="submit" [disabled]="form.invalid">Upload Movie</button>
+  <button type="submit" [disabled]="form.invalid || isLoading()">
+    <span *ngIf="isLoading()">Uploading...</span>
+    <span *ngIf="!isLoading()">Upload Movie</span>
+  </button>
 </form>

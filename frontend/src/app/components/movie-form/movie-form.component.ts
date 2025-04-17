@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, NgIf } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,12 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgIf],
   templateUrl: './movie-form.component.html',
   styleUrl: './movie-form.component.css',
 })
 export class MovieFormComponent {
   form: FormGroup;
+  isLoading = signal(false);
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +41,9 @@ export class MovieFormComponent {
 
   onSubmit() {
     if (this.form.valid) {
+      this.isLoading.set(true);
       const formData = new FormData();
+
       formData.append('video_file', this.form.get('video_file')!.value);
       formData.append('title', this.form.get('title')!.value);
       formData.append('description', this.form.get('description')!.value);
@@ -54,12 +57,23 @@ export class MovieFormComponent {
           this.snackBar.open('Movie uploaded successfully!', 'Close', {
             duration: 3000, // Duration in milliseconds
           });
+          this.isLoading.set(false);
         },
         error: (err) => {
-          console.error('Upload failed', err);
-          this.snackBar.open('Upload failed. Please try again.', 'Close', {
+          let errorMessage = '';
+          for (const [key, value] of Object.entries(err?.error || {})) {
+            if (Array.isArray(value)) {
+              errorMessage += `${key.charAt(0).toUpperCase() + key.slice(1)} Error: ${value.join(', ')}\n`;
+            }
+          }
+          if (!errorMessage) {
+            errorMessage = 'Upload failed. Please try again.';
+          }
+
+          this.snackBar.open(errorMessage, 'Close', {
             duration: 3000,
           });
+          this.isLoading.set(false);
         },
       });
     }
