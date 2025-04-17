@@ -1,1 +1,26 @@
-<p>movie-edit works!</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="movie-form"
+  enctype="multipart/form-data"
+>
+  <label>
+    Title:
+    <input type="text" formControlName="title" />
+  </label>
+
+  <label>
+    Description:
+    <textarea formControlName="description"></textarea>
+  </label>
+
+  <label>
+    Video File:
+    <input type="file" (change)="onFileChange($event)" accept="video/*" />
+  </label>
+
+  <button type="submit" [disabled]="form.invalid || isLoading()">
+    <span *ngIf="isLoading()">Updating...</span>
+    <span *ngIf="!isLoading()">Update Movie</span>
+  </button>
+</form>
