@@ -30,7 +30,16 @@ class MovieSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         movie = super().create(validated_data)
-        thumbnail =  generate_thumbnail.delay(movie.id)
+        generate_thumbnail.delay(movie.id)
 
-        movie.thumbnail = thumbnail
+        return movie
+
+    def update(self, instance, validated_data):
+        movie = super().update(instance, validated_data)
+
+        video_file = validated_data.get('video_file', None)
+        print(video_file)
+        if video_file:
+            generate_thumbnail.delay(movie.id)
+
         return movie
