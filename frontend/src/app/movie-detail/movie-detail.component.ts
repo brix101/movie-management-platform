@@ -29,7 +29,6 @@ export class MovieDetailComponent {
     if (id) {
       this.movieDetailService.getMovie(+id).subscribe((data) => {
         this.movie = data;
-        console.log(data);
       });
     }
   }
@@ -65,5 +64,11 @@ export class MovieDetailComponent {
         });
       }
     });
+  }
+
+  onEdit(): void {
+    if (this.movie) {
+      this.router.navigate(['/movies', this.movie.id, 'edit']);
+    }
   }
 }
