@@ -13,11 +13,11 @@ export class MovieDetailService {
 
   constructor() {}
 
-  getMovie(id: number): Observable<Movie> {
+  getMovieById(id: number): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiUrl}/${id}/`);
   }
 
-  deleteMovie(id: number): Observable<Movie> {
+  deleteMovieById(id: number): Observable<Movie> {
     return this.http.delete<Movie>(`${this.apiUrl}/${id}/`);
   }
 }

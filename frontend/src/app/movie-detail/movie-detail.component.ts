@@ -25,12 +25,14 @@ export class MovieDetailComponent {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.movieDetailService.getMovie(+id).subscribe((data) => {
-        this.movie = data;
-      });
-    }
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.movieDetailService.getMovieById(+id).subscribe((movie) => {
+          this.movie = movie;
+        });
+      }
+    });
   }
 
   onDelete(): void {
@@ -40,7 +42,7 @@ export class MovieDetailComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result && this.movie) {
-        this.movieDetailService.deleteMovie(this.movie.id).subscribe({
+        this.movieDetailService.deleteMovieById(this.movie.id).subscribe({
           next: () => {
             this.snackBar.open('Movie deleted successfully!', 'Close', {
               duration: 3000, // Duration in milliseconds
@@ -68,7 +70,9 @@ export class MovieDetailComponent {
 
   onEdit(): void {
     if (this.movie) {
-      this.router.navigate(['/movies', this.movie.id, 'edit']);
+      this.router.navigate(['/movies', this.movie.id, 'edit'], {
+        state: { movie: this.movie },
+      });
     }
   }
 }
